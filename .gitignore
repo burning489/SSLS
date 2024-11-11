@@ -1,0 +1,12 @@
+.vscode
+
+venv
+
+**results/
+
+*.pdf
+*.pkl
+
+tmp
+
+**__pycache__

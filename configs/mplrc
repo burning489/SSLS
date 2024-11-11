@@ -1,0 +1,33 @@
+figure.dpi: 600
+figure.titlesize: 600
+
+axes.grid: False
+axes.labelsize: 9
+axes.labelpad: 1
+axes.labelweight: 500
+
+axes.spines.top: False
+axes.spines.right: False
+
+xtick.labelsize: 6
+xtick.direction: out
+
+ytick.labelsize: 6
+ytick.direction: out
+
+xtick.major.pad: 2
+
+ytick.major.pad: 2
+
+grid.linestyle: :
+grid.alpha: 0.8
+
+lines.linewidth: 1
+
+legend.fontsize: 9
+
+mathtext.fontset: cm
+
+font.family: serif
+font.serif: DejaVu Serif
+font.weight: 500

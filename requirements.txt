@@ -1,0 +1,12 @@
+click==8.1.7
+jax==0.4.33
+jax-cfd==0.2.1
+jaxlib==0.4.33
+matplotlib==3.9.2
+numpy==2.1.1
+pandas==2.2.3
+scipy==1.14.1
+seaborn==0.13.2
+tensorboard==2.18.0
+torch==2.4.1
+tqdm==4.66.5

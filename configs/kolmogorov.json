@@ -1,0 +1,39 @@
+{
+  "dynamics": {
+    "grid_size": 128,
+    "reynolds": 1000,
+    "dt": 0.2,
+    "steps": 50
+  },
+  "measurement": {
+    "type": "GridMask",
+    "noise_std": 0.1,
+    "kernel_size": 8,
+    "sparsity": 0.95,
+    "stride": 3,
+    "supported_type": ["Linear", "AvgPool", "GridMask", "CenterMask", "RandomMask"],
+    "description": "noise_std is universal for Gaussian noise level, kernel_size is for AvgPooling, sparsity is for RandomMask, stride is for GridMask"
+  },
+  "train": {
+    "n_train": 400,
+    "n_epoch": 200,
+    "batch_size": 400,
+    "lr": 1e-3,
+    "denoising_sigma": 0.2
+  },
+  "network": {
+    "model_channels": 16,
+    "channel_mult": [1, 1, 1],
+    "num_res_blocks": 1,
+    "attn_resolutions": [16],
+    "dropout": 0.0,
+    "resample_with_conv": true
+  },
+  "langevin": {
+    "steps": 500,
+    "stepsize": 1e-3,
+    "anneal_init": 0.001,
+    "anneal_decay": 0.5,
+    "anneal_steps": 1
+  }
+}
