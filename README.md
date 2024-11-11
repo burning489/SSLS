@@ -1,12 +1,17 @@
-# Score-Based Sequential Langevin Monte Carlo for Nonlinear Assimilation
+# Nonlinear Assimilation with Score-based Sequential Langevin Sampling
 
 ------
+The official implementation a novel approach for nonlinear assimilation called score-based sequential Langevin sampling (SSLS) within a Bayesian recursive framework.
+Numerical examples demonstrate its outstanding performance in high-dimensional and nonlinear scenarios, as well as in situations with sparse or partial measurements.
+```math
+ \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k]}} (\bf{x}|\bf{y}_{[k]})}_\text{score of posterior} = \nabla \log \underbrace{p_{\bf{Y}_k|\bf{X}_{k}}(\bf{y}_k|\bf{x})}_\text{likelihood} + \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k-1]}}(\bf{x}|\bf{y}_{[k-1]})}_\text{score of prior}
+```
 
 ![KFlow Evolution](asset/Kolmogorov_evolution.png)
 
 ## Dependencies
 ```bash
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 ### Structure
@@ -62,7 +67,7 @@ python main.py lorenz96|kolmogorov --device cpu|cuda
 ```
 
 ## How to reproduce
-1. Download our results (processed pkl files, around 103.6 MB) available at [Google drive](https://drive.google.com/drive/folders/14ZlxS7k-gKi9YCqbiP2Wth2qI_381Go7?usp=sharing) to the `asset` folder
+1. Download our results (processed pkl files, around 103.6 MB) available at [Google Drive](https://drive.google.com/drive/folders/14ZlxS7k-gKi9YCqbiP2Wth2qI_381Go7?usp=sharing) to the `asset` folder
 2. Run the corresponding Jupyter Notebooks, you only need to run the first and the last code block for importing dependent libraries and plotting, respectively.
 
 ## How to extend
