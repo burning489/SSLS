@@ -23,18 +23,18 @@ pip install -r requirements.txt
 |   `-- mplrc # custom matplotlib configurations for visualization
 |-- main.py # entrance
 ├── notebooks
-│   ├── KolmogorovAbalation.ipynb # reproducing Figure 11
+│   ├── KolmogorovAbalation.ipynb # reproducing Figure 12
 │   ├── KolmogorovEvolution.ipynb # reproducing Figure 9
 │   ├── KolmogorovMLE.ipynb # w/o prior assimilation
-│   ├── KolmogorovMetrics.ipynb # reproducing Figure 14
-│   ├── KolmogorovUQ.ipynb # reproducing Figure 10
+│   ├── KolmogorovMetrics.ipynb # reproducing Figure 15
+│   ├── KolmogorovUQ.ipynb # reproducing Figure 10 and Figure 11
 │   ├── LinearGaussianSSM.ipynb # reproducing Figure 3
 │   ├── LorenzAuxiliaryParticleFilter.ipynb # APF with infation for Lorenz 96
-│   ├── LorenzEnsemble.ipynb # reproducing Figure 12
+│   ├── LorenzEnsemble.ipynb # reproducing Figure 13
 │   ├── LorenzEvolution.ipynb # reproducing Figure 7
 │   ├── LorenzKalmanFilter.ipynb # EnKF for Lorenz 96
 │   ├── LorenzMetrics.ipynb # reproducing Figure 8
-│   └── LorenzTrajectory.ipynb # reproducing Figure 13
+│   └── LorenzTrajectory.ipynb # reproducing Figure 14
 |-- requirements.txt 
 `-- src
 |   |-- __init__.py

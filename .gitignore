@@ -4,6 +4,8 @@ venv
 
 **results/
 
+**.ipynb_checkpoints
+
 *.pdf
 *.pkl
 
