@@ -23,9 +23,9 @@ pip install -r requirements.txt
 |   `-- mplrc # custom matplotlib configurations for visualization
 |-- main.py # entrance
 ├── notebooks
-│   ├── KolmogorovAbalation.ipynb # reproducing Figure 12
+│   ├── KolmogorovAblation.ipynb # reproducing Figure 12
 │   ├── KolmogorovEvolution.ipynb # reproducing Figure 9
-│   ├── KolmogorovMLE.ipynb # w/o prior assimilation
+│   ├── KolmogorovMLE.ipynb # ensemble MLE and w/o prior score for ablation studies
 │   ├── KolmogorovMetrics.ipynb # reproducing Figure 15
 │   ├── KolmogorovUQ.ipynb # reproducing Figure 10 and Figure 11
 │   ├── LinearGaussianSSM.ipynb # reproducing Figure 3
