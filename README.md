@@ -7,7 +7,10 @@ Numerical examples demonstrate its outstanding performance in high-dimensional a
  \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k]}} (\bf{x}|\bf{y}_{[k]})}_\text{score of posterior} = \nabla \log \underbrace{p_{\bf{Y}_k|\bf{X}_{k}}(\bf{y}_k|\bf{x})}_\text{likelihood} + \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k-1]}}(\bf{x}|\bf{y}_{[k-1]})}_\text{score of prior}
 ```
 
-![KFlow Evolution](asset/Kolmogorov_evolution.png)
+<!-- ![KFlow Evolution](asset/Kolmogorov_evolution.png) -->
+![Kolmogorov Flow AvgPool](asset/AvgPool.gif)
+<!-- ![Kolmogorov Flow GridMask](asset/GridMask.gif) -->
+![Kolmogorov Flow CenterMask](asset/CenterMask.gif)
 
 ## Dependencies
 ```bash
@@ -28,6 +31,7 @@ pip install -r requirements.txt
 │   ├── KolmogorovMLE.ipynb # ensemble MLE and w/o prior score for ablation studies
 │   ├── KolmogorovMetrics.ipynb # reproducing Figure 14
 │   ├── KolmogorovUQ.ipynb # reproducing Figure 9 and Figure 10
+│   ├── KolmogorovAnimation.ipynb # animation version for Figure 8
 │   ├── LinearGaussianSSM.ipynb # reproducing Figure 3
 │   ├── LorenzAuxiliaryParticleFilter.ipynb # APF with infation for Lorenz 96
 │   ├── LorenzEnsemble.ipynb # reproducing Figure 12

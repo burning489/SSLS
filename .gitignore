@@ -10,6 +10,7 @@ venv
 
 *.pdf
 *.pkl
+*.mp4
 
 tmp
 
