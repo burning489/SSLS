@@ -2,6 +2,7 @@ figure.dpi: 600
 figure.titlesize: 600
 
 axes.grid: False
+axes.titlesize: 9
 axes.labelsize: 9
 axes.labelpad: 1
 axes.labelweight: 500

@@ -12,6 +12,6 @@ venv
 *.pkl
 *.mp4
 
-tmp
+tmp.*
 
 **__pycache__
