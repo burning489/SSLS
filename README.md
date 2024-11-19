@@ -9,7 +9,7 @@ Numerical examples demonstrate its outstanding performance in high-dimensional a
 
 <!-- ![KFlow Evolution](asset/Kolmogorov_evolution.png) -->
 ![Kolmogorov Flow AvgPool](asset/AvgPool.gif)
-<!-- ![Kolmogorov Flow GridMask](asset/GridMask.gif) -->
+![Kolmogorov Flow GridMask](asset/GridMask.gif)
 ![Kolmogorov Flow CenterMask](asset/CenterMask.gif)
 
 ## Dependencies
