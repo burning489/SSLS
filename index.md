@@ -47,7 +47,7 @@ After assembling the posterior score, we can use any Langevin-type sampling meth
 ## Flow Chart
 We provide a flow chart below.
 
-![](asset/bayesian.png)
+<img src="./asset/bayesian.png" width="85%"/>
 
 
 ## Pseudocode
