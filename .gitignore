@@ -11,6 +11,7 @@ venv
 *.pdf
 *.pkl
 *.mp4
+*.css
 
 tmp.*
 
