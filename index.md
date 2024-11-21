@@ -2,6 +2,8 @@
 
 Zhao Ding<sup>1</sup>, Chenguang Duan<sup>1</sup>, Yuling Jiao<sup>1</sup>, Jerry Zhijian Yang<sup>1</sup>, Cheng Yuan<sup>2</sup> and Pingwen Zhang<sup>1,3</sup>
 
+Arranged in alphabetical order.
+
 <sup>1</sup> Wuhan University, <sup>2</sup> Central China Normal University, <sup>3</sup> Peking University
 
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](https://github.com/burning489/SSLS)
