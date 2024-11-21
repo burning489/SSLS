@@ -16,13 +16,13 @@ We propose nonlinear assimilation method called score-based sequential Langevin 
 Consider the following system:
 $$
   \begin{align*}
-    \mathbf{X}^{k+1} & =f_{k}(\mathbf{X}^{k}, \eta^{k}), \quad k \geq 1, \\
+    \mathbf{X}^{k} & =f_{k-1}(\mathbf{X}^{k-1}, \eta^{k-1}), \quad k > 1, \\
     \mathbf{Y}^{k} & =g_{k}(\mathbf{X}^{k}, \xi^{k}), \quad k \geq 1,
   \end{align*}
 $$
 where $\mathbf{X}_k$ is the latent states of interests evolved by $f_k$, and $\mathbf{Y}_k$ is the observations under measurement $g_k$. Here we assume that $\eta^k$ and $\xi^k$ are noises with known distributions. 
 
-__The goal of Data Assimilation__:
+> __The goal of Data Assimilation__:
 Given historical observations $\mathbf{y}^{[k]}$, ($[k]$ stands for $\{1, \cdots, k\}$), estimate the posterior distribution of the latent states: $p_{\mathbf{X}^{k}|\mathbf{Y}^{[k]} = \mathbf{y}^{[k]}}$.
 
 
@@ -55,11 +55,16 @@ We provide a flow chart below.
 ## Pseudocode
 We provide the python-like pseudocode below.
 ```python
+# start from an initial prior
 prior = sample_from_prior()
 for i in range(k+1):
-    prior_score = score_matching(prior) # sliced / implicit / denoising
+    # sliced / implicit / denoising
+    prior_score = score_matching(prior)
+    # assemble posterior
     posterior_score = lambda x: grad_log_likelihood(x, y[i]) + prior_score(x)
-    posterior = langevin(prior, posterior_score) # any Langevin-type sampling method
+    # any Langevin-type sampling method
+    posterior = langevin(prior, posterior_score)
+    # dynamics transition to get best guess for next step
     prior = dynamics_transition(posterior)
 ```
 
@@ -73,7 +78,7 @@ Please refer to our paper for more results.
 ![Kolmogorov Flow CenterMask](asset/CenterMask.gif)
 
 
-## Citing
+## How to Cite
 If you find our work useful for your research, please consider citing
 
 ```bib
