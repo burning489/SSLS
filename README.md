@@ -1,24 +1,5 @@
 # Nonlinear Assimilation with Score-based Sequential Langevin Sampling
 
-<script type="text/javascript" async
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
- <meta name="google-site-verification" content="0b2gGyRf89q-XhR2D-KNOg12ADArqcqjIxOKG8NZqxA" />
-
- <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      extensions: ["tex2jax.js"],
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-      },
-      "HTML-CSS": { availableFonts: ["TeX"] }
-    });
- </script>
-
 [![arXiv](https://img.shields.io/badge/arXiv-2411.13443-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2411.13443)
 
 This repo contains the official implementation for the paper ["Nonlinear Assimilation with Score-based Sequential Langevin Sampling"](https://arxiv.org/abs/2411.13443), a nonlinear assimilation method called score-based sequential Langevin sampling (SSLS) within a Bayesian recursive framework.
