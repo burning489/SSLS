@@ -1,11 +1,14 @@
 # Nonlinear Assimilation with Score-based Sequential Langevin Sampling
 
-------
-The official implementation a novel approach for nonlinear assimilation called score-based sequential Langevin sampling (SSLS) within a Bayesian recursive framework.
-Numerical examples demonstrate its outstanding performance in high-dimensional and nonlinear scenarios, as well as in situations with sparse or partial measurements.
+[![arXiv](https://img.shields.io/badge/arXiv-2411.13443-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2411.13443)
+
+This repo contains the official implementation for the paper ["Nonlinear Assimilation with Score-based Sequential Langevin Sampling"](https://arxiv.org/abs/2411.13443), a nonlinear assimilation method called score-based sequential Langevin sampling (SSLS) within a Bayesian recursive framework.
 ```math
  \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k]}} (\bf{x}|\bf{y}_{[k]})}_\text{score of posterior} = \nabla \log \underbrace{p_{\bf{Y}_k|\bf{X}_{k}}(\bf{y}_k|\bf{x})}_\text{likelihood} + \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k-1]}}(\bf{x}|\bf{y}_{[k-1]})}_\text{score of prior}
 ```
+
+Numerical examples demonstrate its outstanding performance in high-dimensional and nonlinear scenarios, as well as in situations with sparse or partial measurements.
+
 
 <!-- ![KFlow Evolution](asset/Kolmogorov_evolution.png) -->
 ![Kolmogorov Flow AvgPool](asset/AvgPool.gif)
@@ -90,11 +93,13 @@ This repository is built upon some previous repositories
 If you find the code useful for your research, please consider citing
 
 ```bib
-@misc{ssls,
-      title={}, 
-      author={},
+@misc{ding2024nonlinearassimilationscorebasedsequential,
+      title={Nonlinear Assimilation with Score-based Sequential Langevin Sampling}, 
+      author={Zhao Ding and Chenguang Duan and Yuling Jiao and Jerry Zhijian Yang and Cheng Yuan and Pingwen Zhang},
       year={2024},
-      eprint={},
+      eprint={2411.13443},
       archivePrefix={arXiv},
+      primaryClass={math.NA},
+      url={https://arxiv.org/abs/2411.13443}, 
 }
 ```
