@@ -1,6 +1,7 @@
 # Nonlinear Assimilation with Score-based Sequential Langevin Sampling
 
 [![arXiv](https://img.shields.io/badge/arXiv-2411.13443-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2411.13443)
+[![Blog Icon](https://img.icons8.com/ios-filled/50/blogger.png)](https://burning489.github.io/SSLS/)
 
 This repo contains the official implementation for the paper ["Nonlinear Assimilation with Score-based Sequential Langevin Sampling"](https://arxiv.org/abs/2411.13443), a nonlinear assimilation method called score-based sequential Langevin sampling (SSLS) within a Bayesian recursive framework.
 ```math
