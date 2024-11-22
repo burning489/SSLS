@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   counter-increment: heading;
 }
 
-h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+h2::before, h3::before, h4::before, h5::before, h6::before {
   content: counter(heading) ". ";
   position: relative;
 }
