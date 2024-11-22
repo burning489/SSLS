@@ -1,11 +1,16 @@
 # Nonlinear Assimilation with Score-based Sequential Langevin Sampling
 
 [![arXiv](https://img.shields.io/badge/arXiv-2411.13443-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2411.13443)
-[![Blog Icon](https://img.icons8.com/ios-filled/50/blogger.png)](https://burning489.github.io/SSLS/)
 
 This repo contains the official implementation for the paper ["Nonlinear Assimilation with Score-based Sequential Langevin Sampling"](https://arxiv.org/abs/2411.13443), a nonlinear assimilation method called score-based sequential Langevin sampling (SSLS) within a Bayesian recursive framework.
+Please refer to our [blog](https://burning489.github.io/SSLS/) for a 3 minutes brief and our [paper](https://arxiv.org/abs/2411.13443) for details.
 ```math
- \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k]}} (\bf{x}|\bf{y}_{[k]})}_\text{score of posterior} = \nabla \log \underbrace{p_{\bf{Y}_k|\bf{X}_{k}}(\bf{y}_k|\bf{x})}_\text{likelihood} + \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k-1]}}(\bf{x}|\bf{y}_{[k-1]})}_\text{score of prior}
+\begin{align*}
+  & {\color{blue} {p(\mathbf{x}^k | \mathbf{y}^{[k]})}} \\
+  \propto~ & p(\mathbf{y}^k | \mathbf{x}^k, \mathbf{y}^{[k-1]}) p(\mathbf{x}^k, \mathbf{y}^{[k-1]}) \\
+  \propto~ & \underbrace{p(\mathbf{y}^k | \mathbf{x}^k)}_{\text{likelihood}} \underbrace{\int \overbrace{p(\mathbf{x}^k | \mathbf{x}^{k-1})}^{\text{transition}} {\color{blue} \overbrace{ {p(\mathbf{x}^{k-1} | \mathbf{y}^{[k-1]})}}^{\text{last posterior}}} \, \mathrm{d} \mathbf{x}^{k-1}}_{\text{prior}} \\
+  \propto~ & \underbrace{p(\mathbf{y}^k | \mathbf{x}^k)}_{\text{likelihood}} \underbrace{p(\mathbf{x}^{k} | \mathbf{y}^{[k-1]})}_{\text{prior}}
+\end{align*}
 ```
 
 Numerical examples demonstrate its outstanding performance in high-dimensional and nonlinear scenarios, as well as in situations with sparse or partial measurements.
