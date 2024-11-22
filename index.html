@@ -129,50 +129,50 @@ that <span class="math inline">\(\eta^k\)</span> and <span
 class="math inline">\(\xi^k\)</span> are noises with known
 distributions.</p>
 <blockquote>
-<p><strong>The goal of Data Assimilation</strong>: Given historical
-observations <span class="math inline">\(\mathbf{y}^{[k]}\)</span>,
-(<span class="math inline">\([k]\)</span> stands for <span
-class="math inline">\(\{1, \cdots, k\}\)</span>), estimate the posterior
-distribution of the latent states: <span
-class="math inline">\(p_{\mathbf{X}^{k}|\mathbf{Y}^{[k]} =
-\mathbf{y}^{[k]}}\)</span>.</p>
+<p><strong>The goal of Data Assimilation</strong>: Combine historical
+observations with dynamics simulation to provide the best estimate of
+the current states.</p>
 </blockquote>
 <h2 id="recursive-bayesian-framework">Recursive Bayesian Framework</h2>
 <p>Our work is carried out under the recursive Bayesian framework
 described below: <span class="math display">\[
 \begin{align*}
-    &amp; p_{\mathbf{X}^k|\mathbf{Y}^{[k]}}(\mathbf{x}|\mathbf{y}^{[k]})
-\\
-    \propto &amp; {\color{orange}
-p_{\mathbf{Y}^{[k]}|\mathbf{X}^{k}}(\mathbf{y}^{[k]}|\mathbf{x})}
-{\color{teal} p_{\mathbf{X}^{k}}(\mathbf{x})} \\
-    \propto &amp; {\color{orange}
-p_{\mathbf{Y}^{k}|\mathbf{X}^{k}}(\mathbf{y}^{k}|\mathbf{x})}
-\cancel{\color{orange}p_{\mathbf{Y}^{[k-1]} | (\mathbf{X}^{k},
-\mathbf{Y}^{k})}(\mathbf{y}^{[k-1]}|\mathbf{x}, \mathbf{y}^{k})}
-\frac{\color{teal}
-p_{\mathbf{X}^{k}|\mathbf{Y}^{[k-1]}}(\mathbf{x}|\mathbf{y}^{[k-1]})}{\cancel{\color{teal}
-p_{\mathbf{Y}^{[k-1]}|\mathbf{X}^{k}}(\mathbf{y}^{[k-1]}|\mathbf{x})}}
-\\
-    = &amp; {\color{orange}
-p_{\mathbf{Y}^{k}|\mathbf{X}^{k}}(\mathbf{y}^{k}|\mathbf{x})}  {\color{teal}p_{\mathbf{X}^{k}|\mathbf{Y}^{[k-1]}}(\mathbf{x}|\mathbf{y}^{[k-1]})}
-  \end{align*}
-  \]</span></p>
+  &amp; {\color{blue} {p(\mathbf{x}^k | \mathbf{y}^{[k]})}} \\
+  \propto~ &amp; p(\mathbf{y}^k | \mathbf{x}^k, \mathbf{y}^{[k-1]})
+p(\mathbf{x}^k, \mathbf{y}^{[k-1]}) \\
+  \propto~ &amp; \underbrace{p(\mathbf{y}^k |
+\mathbf{x}^k)}_{\text{likelihood}} \underbrace{\int
+\overbrace{p(\mathbf{x}^k | \mathbf{x}^{k-1})}^{\text{transition}}
+{\color{blue} \overbrace{ {p(\mathbf{x}^{k-1} |
+\mathbf{y}^{[k-1]})}}^{\text{last posterior}}} \, \mathrm{d}
+\mathbf{x}^{k-1}}_{\text{prior}} \\
+  \propto~ &amp; \underbrace{p(\mathbf{y}^k |
+\mathbf{x}^k)}_{\text{likelihood}} \underbrace{p(\mathbf{x}^{k} |
+\mathbf{y}^{[k-1]})}_{\text{prior}}
+\end{align*}
+\]</span> We maintain an ensemble of particles to estimate the prior and
+posterior distribution throughout the assimilation process. At each
+step, the prior samples are obtained by running the dynamics simulation
+starting from the posterior particles of the last time point.</p>
 <h2 id="langevin-monte-carlo">Langevin Monte Carlo</h2>
 <p>The posterior score now can be decomposed as the sum of likelihood
 score and prior score: <span class="math display">\[ \underbrace{\nabla
-\log p_{\bf{X}_k|\bf{Y}_{[k]}} (\bf{x}|\bf{y}_{[k]})}_\text{score of
-posterior} = \nabla \log
-\underbrace{p_{\bf{Y}_k|\bf{X}_{k}}(\bf{y}_k|\bf{x})}_\text{likelihood}
+\log p (\mathbf{x}^k|\mathbf{y}^{[k]})}_\text{score of posterior} =
+\nabla \log \underbrace{p(\mathbf{y}^k|\mathbf{x}^k)}_\text{likelihood}
 + \underbrace{\nabla \log
-p_{\bf{X}_k|\bf{Y}_{[k-1]}}(\bf{x}|\bf{y}_{[k-1]})}_\text{score of
-prior}. \]</span> The likelihood score can be computed with known
-measurement model and noises. As for the prior score, we exploit the
-score matching technique at each time step, given the prior ensemble
-from last step.</p>
+p(\mathbf{x}^k|\mathbf{y}^{[k-1]})}_\text{score of prior}. \]</span> The
+likelihood score can be computed with known measurement model and
+noises. As for the prior score, we exploit the score matching technique
+at each time step based on the prior ensemble.</p>
 <p>After assembling the posterior score, we can use any Langevin-type
 sampling method to derive samples from the posterior distribution,
-starting from the transitioned ensemble from last time step.</p>
+starting from the transitioned ensemble from last time step: <span
+class="math display">\[
+\mathrm{d} \mathbf{X}_t^k = \nabla \log p(\mathbf{X}_t^k |
+\mathbf{y}^{[k]}) \, \mathrm{d}t + \sqrt{2} \, \mathrm{d} \mathbf{B}_t,
+\ \mathbf{X}_0^k \sim p(\mathbf{x}^k|\mathbf{y}^{[k-1]}), \ t \in [0,
+\infty).
+\]</span></p>
 <h2 id="flow-chart">Flow Chart</h2>
 <p>We provide a flow chart below.</p>
 <p><img src="./asset/bayesian.png" width="85%"/></p>

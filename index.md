@@ -23,27 +23,32 @@ $$
 where $\mathbf{X}_k$ is the latent states of interests evolved by $f_k$, and $\mathbf{Y}_k$ is the observations under measurement $g_k$. Here we assume that $\eta^k$ and $\xi^k$ are noises with known distributions. 
 
 > __The goal of Data Assimilation__:
-Given historical observations $\mathbf{y}^{[k]}$, ($[k]$ stands for $\{1, \cdots, k\}$), estimate the posterior distribution of the latent states: $p_{\mathbf{X}^{k}|\mathbf{Y}^{[k]} = \mathbf{y}^{[k]}}$.
+Combine historical observations with dynamics simulation to provide the best estimate of the current states.
 
 
 ## Recursive Bayesian Framework
 Our work is carried out under the recursive Bayesian framework described below:
 $$
 \begin{align*}
-    & p_{\mathbf{X}^k|\mathbf{Y}^{[k]}}(\mathbf{x}|\mathbf{y}^{[k]}) \\
-    \propto & {\color{orange} p_{\mathbf{Y}^{[k]}|\mathbf{X}^{k}}(\mathbf{y}^{[k]}|\mathbf{x})} {\color{teal} p_{\mathbf{X}^{k}}(\mathbf{x})} \\
-    \propto & {\color{orange} p_{\mathbf{Y}^{k}|\mathbf{X}^{k}}(\mathbf{y}^{k}|\mathbf{x})} \cancel{\color{orange}p_{\mathbf{Y}^{[k-1]} | (\mathbf{X}^{k}, \mathbf{Y}^{k})}(\mathbf{y}^{[k-1]}|\mathbf{x}, \mathbf{y}^{k})} \frac{\color{teal} p_{\mathbf{X}^{k}|\mathbf{Y}^{[k-1]}}(\mathbf{x}|\mathbf{y}^{[k-1]})}{\cancel{\color{teal} p_{\mathbf{Y}^{[k-1]}|\mathbf{X}^{k}}(\mathbf{y}^{[k-1]}|\mathbf{x})}} \\
-    = & {\color{orange} p_{\mathbf{Y}^{k}|\mathbf{X}^{k}}(\mathbf{y}^{k}|\mathbf{x})}  {\color{teal}p_{\mathbf{X}^{k}|\mathbf{Y}^{[k-1]}}(\mathbf{x}|\mathbf{y}^{[k-1]})}
-  \end{align*}
-  $$
+  & {\color{blue} {p(\mathbf{x}^k | \mathbf{y}^{[k]})}} \\
+  \propto~ & p(\mathbf{y}^k | \mathbf{x}^k, \mathbf{y}^{[k-1]}) p(\mathbf{x}^k, \mathbf{y}^{[k-1]}) \\
+  \propto~ & \underbrace{p(\mathbf{y}^k | \mathbf{x}^k)}_{\text{likelihood}} \underbrace{\int \overbrace{p(\mathbf{x}^k | \mathbf{x}^{k-1})}^{\text{transition}} {\color{blue} \overbrace{ {p(\mathbf{x}^{k-1} | \mathbf{y}^{[k-1]})}}^{\text{last posterior}}} \, \mathrm{d} \mathbf{x}^{k-1}}_{\text{prior}} \\
+  \propto~ & \underbrace{p(\mathbf{y}^k | \mathbf{x}^k)}_{\text{likelihood}} \underbrace{p(\mathbf{x}^{k} | \mathbf{y}^{[k-1]})}_{\text{prior}}
+\end{align*}
+$$
+We maintain an ensemble of particles to estimate the prior and posterior distribution throughout the assimilation process. 
+At each step, the prior samples are obtained by running the dynamics simulation starting from the posterior particles of the last time point.
 
 ## Langevin Monte Carlo
 The posterior score now can be decomposed as the sum of likelihood score and prior score:
-$$ \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k]}} (\bf{x}|\bf{y}_{[k]})}_\text{score of posterior} = \nabla \log \underbrace{p_{\bf{Y}_k|\bf{X}_{k}}(\bf{y}_k|\bf{x})}_\text{likelihood} + \underbrace{\nabla \log p_{\bf{X}_k|\bf{Y}_{[k-1]}}(\bf{x}|\bf{y}_{[k-1]})}_\text{score of prior}. $$
+$$ \underbrace{\nabla \log p (\mathbf{x}^k|\mathbf{y}^{[k]})}_\text{score of posterior} = \nabla \log \underbrace{p(\mathbf{y}^k|\mathbf{x}^k)}_\text{likelihood} + \underbrace{\nabla \log p(\mathbf{x}^k|\mathbf{y}^{[k-1]})}_\text{score of prior}. $$
 The likelihood score can be computed with known measurement model and noises.
-As for the prior score, we exploit the score matching technique at each time step, given the prior ensemble from last step.
+As for the prior score, we exploit the score matching technique at each time step based on the prior ensemble.
 
-After assembling the posterior score, we can use any Langevin-type sampling method to derive samples from the posterior distribution, starting from the transitioned ensemble from last time step.
+After assembling the posterior score, we can use any Langevin-type sampling method to derive samples from the posterior distribution, starting from the transitioned ensemble from last time step:
+$$
+\mathrm{d} \mathbf{X}_t^k = \nabla \log p(\mathbf{X}_t^k | \mathbf{y}^{[k]}) \, \mathrm{d}t + \sqrt{2} \, \mathrm{d} \mathbf{B}_t, \ \mathbf{X}_0^k \sim p(\mathbf{x}^k|\mathbf{y}^{[k-1]}), \ t \in [0, \infty).
+$$
 
 
 ## Flow Chart
